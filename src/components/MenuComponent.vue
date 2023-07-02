@@ -52,9 +52,12 @@ async function change() {
     :ellipsis="false">
     <el-menu-item index="/">主页</el-menu-item>
     <el-menu-item index="/search">车票购买</el-menu-item>
-    <el-menu-item index="/station" v-if="user.type === 'admin'">车站管理</el-menu-item>
-    <el-menu-item index="/route" v-if="user.type === 'admin'">路线管理</el-menu-item>
-    <el-menu-item index="/train" v-if="user.type === 'admin'">车次管理</el-menu-item>
+<!--    <el-menu-item index="/station" v-if="user.type === 'admin'">车站管理</el-menu-item>-->
+<!--    <el-menu-item index="/route" v-if="user.type === 'admin'">路线管理</el-menu-item>-->
+<!--    <el-menu-item index="/train" v-if="user.type === 'admin'">车次管理</el-menu-item>-->
+    <el-menu-item index="/station">车站管理</el-menu-item>
+    <el-menu-item index="/route">路线管理</el-menu-item>
+    <el-menu-item index="/train">车次管理</el-menu-item>
     <el-menu-item index="/order">最近订单</el-menu-item>
     <el-menu-item h="full" @click="change()">
       <button class="border-none w-full bg-transparent cursor-pointer" style="height: var(--el-menu-item-height)">
