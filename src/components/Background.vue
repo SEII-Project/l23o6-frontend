@@ -27,10 +27,12 @@ export default {
     getMode() {
       return this.darkMode;
     },
+
     handleResize() {
       this.fullWidth = document.documentElement.clientWidth;
       this.fullHeight = document.documentElement.clientHeight;
     },
+
     startTimer() {
       if(this.timer === null) {
         this.timer = setInterval(() => {
@@ -63,7 +65,7 @@ export default {
         storageLocal.setItem("darkImgIndex", String(this.darkImgIndex));
         storageLocal.setItem("darkImgUrl", this.darkImgUrl);
       }
-    }
+    },
   },
   created () {
     window.addEventListener('resize', this.handleResize);
@@ -91,7 +93,7 @@ export default {
 </script>
 
 <template>
-
+  <Hitokoto></Hitokoto>
   <div v-if="getMode() === 'light'">
     <div class="background_light" :style="{width: fullWidth+'px', height:fullHeight+'px'}">
      <div class="img_box" :style="{width: fullWidth+'px', backgroundImage: 'url(' + this.lightImgUrl + ')'}"></div>
@@ -103,7 +105,7 @@ export default {
     </div>
   </div>
 
-  <div style="position: fixed; display: flex; right: 0; bottom: 0">
+  <div style="position: fixed; display: flex; right: 0; bottom: 20px">
     <div style="display: flex; width: 20vh; justify-content: end">
       <el-space>
         <el-button type="primary" @click="startTimer" style="margin-bottom: 15%">启用背景轮播</el-button>

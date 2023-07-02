@@ -44,6 +44,7 @@ declare module '@vue/runtime-core' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
+    Hitokoto: typeof import('./components/Hitokoto.vue')['default']
     LoginForm: typeof import('./components/LoginForm.vue')['default']
     MenuComponent: typeof import('./components/MenuComponent.vue')['default']
     OrderDetail: typeof import('./components/OrderDetail.vue')['default']
