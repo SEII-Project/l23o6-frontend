@@ -81,7 +81,7 @@ const pay = (id: number, payMethod: String) => {
     method: 'PATCH',
     data: {
       status: '已支付',
-      paymentType: payMethod
+      payment_type: payMethod
     }
   }).then((res) => {
     ElNotification({
@@ -220,10 +220,10 @@ getOrderDetail()
       <!--    <div style="margin-top: 2vh">-->
 <!--      -->
       <div style="float:right;">
-        <el-button type="success" @click="pay(id ?? -1, 'WECHAT_PAY')">
+        <el-button type="success" @click="pay(id ?? -1, '微信支付')">
           微信支付
         </el-button>
-        <el-button type="primary" @click="pay(id ?? -1, 'ALIPAY_PAY')">
+        <el-button type="primary" @click="pay(id ?? -1, '支付宝支付')">
           支付宝支付
         </el-button>
         <el-button type="danger" @click="cancel(id ?? -1)">
