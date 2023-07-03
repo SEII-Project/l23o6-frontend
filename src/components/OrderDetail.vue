@@ -75,13 +75,13 @@ const getTrain = () => {
   }
 }
 
-
-const pay = (id: number) => {
+const pay = (id: number, payMethod: String) => {
   request({
     url: `/order/${id}`,
     method: 'PATCH',
     data: {
-      status: '已支付'
+      status: '已支付',
+      paymentType: payMethod
     }
   }).then((res) => {
     ElNotification({
@@ -216,18 +216,27 @@ getOrderDetail()
     </el-descriptions>
 
     <div style="margin-top: 2vh" v-if="orderDetail.data && orderDetail.data.status === '等待支付'">
+<!--For test use-->
+      <!--    <div style="margin-top: 2vh">-->
+<!--      -->
       <div style="float:right;">
+        <el-button type="success" @click="pay(id ?? -1, 'WECHAT_PAY')">
+          微信支付
+        </el-button>
+        <el-button type="primary" @click="pay(id ?? -1, 'ALIPAY_PAY')">
+          支付宝支付
+        </el-button>
         <el-button type="danger" @click="cancel(id ?? -1)">
           取消订单
-        </el-button>
-        <el-button type="primary" @click="pay(id ?? -1)">
-          支付订单
         </el-button>
       </div>
     </div>
     <div v-else-if="orderDetail.data && orderDetail.data.status === '已支付'" style="margin-top: 2vh">
+<!--For test use-->
+      <!--    <div style="margin-top: 2vh">-->
+<!--      -->
       <div style="float:right;">
-        <el-button @click="cancel(id ?? -1)">
+        <el-button type="danger" @click="cancel(id ?? -1)">
           取消订单
         </el-button>
       </div>
