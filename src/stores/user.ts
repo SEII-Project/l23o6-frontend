@@ -9,7 +9,7 @@ export const useUserStore = defineStore('user', {
             type: '',
             idn: '',
             phone: '',
-            userType: 1
+            userType: ''
         }
     },
     getters: {
