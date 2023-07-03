@@ -4,6 +4,7 @@ import { request } from "~/utils/request";
 import { ElNotification } from "element-plus";
 import { useSearchStore } from "~/stores/search";
 import { useRoute } from 'vue-router'
+import StaticTableHead from "~/components/StaticTableHead.vue";
 
 const route = useRoute();
 const search = useSearchStore();
@@ -66,10 +67,9 @@ const submit = () => {
       </div>
       <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
       <el-card>
-        <TicketTable/>
+        <StaticTableHead/>
+        <TicketTableRow v-for="train in trains.res" v-bind="train" />
       </el-card>
-      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
-      <train-description v-for="train in trains.res" v-bind="train" />
     </el-main>
   </el-container>
 </template>
