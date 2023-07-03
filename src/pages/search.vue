@@ -64,6 +64,7 @@ const submit = () => {
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
         </el-card>
       </div>
+      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
       <el-card>
         <TicketTable/>
       </el-card>

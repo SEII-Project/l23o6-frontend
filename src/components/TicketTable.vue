@@ -1,29 +1,100 @@
 <script setup lang="ts">
 
-var conConfigs = [
-  {prop: 'trainSerial', label: '车次号'},
-  {prop: 'departStation', label: '出发站'},
-  {prop: 'arriveStation', label: '到达站'},
-  {prop: 'departTime', label: '出发时间'},
-  {prop: 'arriveTime', label: '到达时间'},
-  {prop: 'Duration', label: '历时'},
-  {prop: 'Seat_0', label: '商务、特等座'},
-  {prop: 'Seat_1', label: '一等座'},
-  {prop: 'Seat_2', label: '二等座'}]
+import { PropType, ref } from "vue";
+import { useStationsStore } from "~/stores/stations";
+import { calDuration, parseDate } from "~/utils/date";
+import { useUserStore } from "~/stores/user";
+import { useRouter } from "vue-router";
+import { TicketInfo } from "~/utils/interfaces";
 
-var tableData = [{trainSerial:'G7052',departStation:'北京',arriveStation:'广州',departTime:'00:00',arriveTime:'21:00',Duration:"21h",Seat_0:'12',Seat_1:'有',Seat_2:'无'},
-  {trainSerial:'G7058',departStation:'徐州',arriveStation:'乌鲁木齐',departTime:'03:00',arriveTime:'次日02:00',Duration:"23h",Seat_0:'17',Seat_1:'有',Seat_2:'无'}]
+const props = defineProps({
+  id: Number,
+  name: String,
+  start_station_id: Number,
+  end_station_id: Number,
+  departure_time: Number,
+  arrival_time: Number,
+  ticket_info: Array as PropType<TicketInfo[]>
+})
+
+const router = useRouter()
+const user = useUserStore()
+const stations = useStationsStore()
+
+let drawer = ref(false)
+let dialog = ref(false)
+
+const handleOrder = () => {
+  dialog.value = true
+  if (user.name === '') {
+    router.push('/login')
+  }
+}
+
+
 </script>
 
 <template>
-  <el-table :data="tableData" border>
-    <el-table-column aria-colspan="2"
-    v-for="{prop ,label} in conConfigs"
-    :key="prop"
-    :prop="prop"
-    :label="label">
+  <el-table border>
+    <el-table-column prop="id" label="车次号" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ name }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="name" label="列车名" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ name }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="duration" label="历时" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ calDuration(departure_time ?? -1, arrival_time ?? -1) }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="start_station_id" label="出发站" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ stations.idToName[start_station_id ?? -1] }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="end_station_id" label="到达站" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ stations.idToName[end_station_id ?? -1] }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="departure_time" label="出发时间" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ parseDate(departure_time) }}
+      </template>
+    </el-table-column>
+    <el-table-column prop="arrival_time" label="到达时间" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ parseDate(arrival_time) }}
+      </template>
+    </el-table-column>
+    <el-table-column v-for="ticket in ticket_info" prop="ticket_info" label="余票" aria-colspan="2">
+      <template slot-scope="scope">
+        {{ ticket.count }}
+      </template>
+    </el-table-column>
+    <el-table-column aria-colspan="6">
+      <div style="display: flex; justify-content: flex-end;">
+        <el-button @click="drawer = true">
+          详情
+        </el-button>
+        <el-button type="primary" @click="handleOrder">
+          购买
+        </el-button>
+      </div>
     </el-table-column>
   </el-table>
+
+  <el-drawer v-model="drawer" direction="rtl" size="50%" destroy-on-close>
+    <TrainDetail :trainId="id" />
+  </el-drawer>
+
+  <el-dialog v-model="dialog" title="Tips" width="50%" draggable destroy-on-close>
+    <OrderForm v-bind="props"></OrderForm>
+  </el-dialog>
 </template>
 
 <style scoped>
