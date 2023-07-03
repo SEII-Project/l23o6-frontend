@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { PropType, ref } from "vue";
-import { SwitchFilled } from '@element-plus/icons-vue'
 import { useStationsStore } from "~/stores/stations";
 import { calDuration, parseDate } from "~/utils/date";
 import { useUserStore } from "~/stores/user";
@@ -33,7 +32,8 @@ const handleOrder = () => {
 </script>
 
 <template>
-  <div style="margin: 0 40vh">
+  <div style="display: flex; justify-content: center">
+  <el-card shadow="hover" style="width: 65%; border: 3px solid #AAAAAA; border-bottom: 2px">
     <el-descriptions :column="4" border>
       <el-descriptions-item :span="2" width="25%" align="center">
         <template #label>
@@ -73,12 +73,7 @@ const handleOrder = () => {
         购买
       </el-button>
     </div>
-
-    <el-divider>
-      <el-icon>
-        <SwitchFilled />
-      </el-icon>
-    </el-divider>
+  </el-card>
   </div>
 
   <el-drawer v-model="drawer" direction="rtl" size="50%" destroy-on-close>
