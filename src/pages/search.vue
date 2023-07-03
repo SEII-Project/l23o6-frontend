@@ -59,16 +59,16 @@ const submit = () => {
     <el-main v-loading="loading" style="height: 90vh;margin-top: 8vh">
 
       <div style="display: flex; justify-content: center; margin-bottom: 5vh">
-        <el-card shadow="hover" style="width: 84%;  border: 3px solid #AAAAAA">
+        <el-card shadow="hover" style="width: 84%; border: 3px solid #AAAAAA">
 
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
         </el-card>
       </div>
-      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
-      <el-card>
-        <TicketTable/>
-      </el-card>
-      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
+<!--      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />-->
+<!--      <el-card>-->
+<!--        <TicketTable/>-->
+<!--      </el-card>-->
+<!--      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />-->
       <train-description v-for="train in trains.res" v-bind="train" />
     </el-main>
   </el-container>

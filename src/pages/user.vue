@@ -39,25 +39,24 @@ const menuSelect = (key) => {
           </el-menu>
         </el-card>
       </el-aside>
-      <el-main style="display: flex; justify-content: center; align-items: center">
-        <el-card shadow="hover" style="width: 100vh; height: 500px; border: 3px solid #AAAAAA">
-          <div v-show="index == 1">
+      <el-main style="display: flex; justify-content: left; align-items: center">
+        <div v-if="index == 1" style="margin-left: 30%">
+          <el-card shadow="hover" style="margin-top: 30%; border: 3px solid #AAAAAA">
             <el-text size="large" type="primary" style="display: flex;justify-content: center">
               <h1>个人信息</h1>
             </el-text>
             <br />
             <UserInfoComponent style="width: 35vh; margin: 0 auto" />
-          </div>
-
-<!--          <div v-show="index == 2" style="height: 85vh; margin-top: 10vh; width: 65%">-->
-          <div v-show="index == 2">
+          </el-card>
+        </div>
+        <div v-else style="margin-left: 25%; margin-top: 400px">
+          <el-card shadow="hover" style="width: 180%;border: 3px solid #AAAAAA">
             <el-text size="large" type="primary" style="display: flex;justify-content: center">
               <h1>订单</h1>
             </el-text>
-
             <UserOrders />
-          </div>
-        </el-card>
+          </el-card>
+        </div>
       </el-main>
     </el-container>
 
