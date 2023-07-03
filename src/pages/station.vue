@@ -152,17 +152,12 @@ watch(stations, () => {
 
       <div style="display: flex; justify-content: center">
         <div style="display: flex; width: 80vh; justify-content: flex-end">
-          <el-card shadow="hover" style="width: 35vh; height: 60px; border: 3px solid #AAAAAA">
-            <el-form inline style="display: flex">
-              <el-form-item style="display: flex; flex-grow: 0.1">
-                <el-input v-model="toAdd" style="width: 20vh"/>
-              </el-form-item>
-              <el-form-item style="display: flex; flex-grow: 0.1">
-                <el-button type="primary" @click="addStation">
-                  添加
-                </el-button>
-              </el-form-item>
-            </el-form>
+          <el-card shadow="hover" style="border: 3px solid #AAAAAA">
+            <el-input v-model="toAdd" style="width: 20vh"/>
+            <a>&emsp;</a>
+            <el-button type="primary" @click="addStation">
+              添加
+            </el-button>
           </el-card>
         </div>
       </div>

@@ -9,12 +9,14 @@
     <el-header style="position: fixed; width: 100%; z-index: 999">
       <MenuComponent pageIndex="/" />
     </el-header>
-    <el-main style="margin-top: 25%">
-      <div style="display: flex; justify-content: center">
-        <el-card class="search-ticket-card" shadow="hover" header="车票查询" style="border: 3px solid #AAAAAA">
-          <SearchTicketForm :inline="false" @formUpdated="() => { $router.push('/search#query'); }"></SearchTicketForm>
-        </el-card>
-      </div>
+    <el-main style="margin-top: 10vh">
+      <el-row justify="center" style="display: flex; align-content: center; height: 80vh">
+        <el-col :span="12" style="display: flex; align-items: center">
+          <el-card class="search-ticket-card" shadow="hover" header="车票查询" style="border: 3px solid #AAAAAA">
+            <SearchTicketForm :inline="false" @formUpdated="() => { $router.push('/search#query'); }"></SearchTicketForm>
+          </el-card>
+        </el-col>
+      </el-row>
     </el-main>
   </el-container>
 </template>

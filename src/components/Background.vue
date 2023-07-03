@@ -9,7 +9,7 @@ export default {
       darkMode: storageLocal.getItem("mode"),
       fullWidth: document.documentElement.clientWidth,
       fullHeight: document.documentElement.clientHeight,
-      darkImgNum: 11,
+      darkImgNum: 10,
       darkImgIndex: storageLocal.getItem("darkImgIndex") === null ? 0 : +storageLocal.getItem("darkImgIndex"),
       darkImgUrl: storageLocal.getItem("darkImgUrl") === null ? '/background_dark/0.jpg' : storageLocal.getItem("darkImgUrl"),
       lightImgNum: 9,
