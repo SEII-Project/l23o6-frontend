@@ -67,9 +67,10 @@ const submit = () => {
       </div>
       <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
       <el-card>
-        <StaticTableHead/>
-        <TicketTableRow v-for="train in trains.res" v-bind="train" />
+        <TicketTable/>
       </el-card>
+      <el-empty v-if="empty" description="结果为空" style="margin-top: 10%" />
+      <train-description v-for="train in trains.res" v-bind="train" />
     </el-main>
   </el-container>
 </template>

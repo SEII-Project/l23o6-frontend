@@ -85,7 +85,7 @@ const handleOrder = () => {
     <TrainDetail :trainId="id" />
   </el-drawer>
 
-  <el-dialog v-model="dialog" title="Tips" width="50%" draggable destroy-on-close>
+  <el-dialog v-model="dialog" width="50%" draggable destroy-on-close>
     <OrderForm v-bind="props"></OrderForm>
   </el-dialog>
 </template>
