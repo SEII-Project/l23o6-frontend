@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, reactive, ref, watch } from 'vue'
-import { SwitchFilled } from "@element-plus/icons-vue";
+import { Location } from "@element-plus/icons-vue";
 import { useStationsStore } from "~/stores/stations";
 import { ElNotification } from "element-plus";
 import { request } from "~/utils/request";
@@ -149,7 +149,7 @@ getRoute()
       <el-card style="margin-bottom: 0.25%" shadow="hover" class="container">
         <div style="display: flex; align-items: center;">
           <el-icon class="handle" size="large">
-            <SwitchFilled />
+            <Location />
           </el-icon>
           <strong style="margin-left: 5%; margin-right: 5%">
             {{ index + 1 }}

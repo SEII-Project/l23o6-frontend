@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType, reactive, ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
-import { CloseBold, SwitchFilled } from "@element-plus/icons-vue";
+import { CloseBold, Location } from "@element-plus/icons-vue";
 import { useStationsStore } from "~/stores/stations";
 import { ElMessage } from "element-plus";
 
@@ -80,7 +80,7 @@ const deleteStation = (index: number) => {
         <el-card style="margin-bottom: 0.25%" shadow="hover" class="container">
           <div style="display: flex; align-items: center;">
             <el-icon class="handle" size="large">
-              <SwitchFilled />
+              <Location />
             </el-icon>
             <strong style="margin-left: 5%; margin-right: 5%">
               {{ route.station_ids.indexOf(station) + 1 }}
