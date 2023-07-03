@@ -52,9 +52,9 @@ async function change() {
     :ellipsis="false">
     <el-menu-item index="/">主页</el-menu-item>
     <el-menu-item index="/search">车票购买</el-menu-item>
-    <el-menu-item index="/station" v-if="user.userType === 'ADMIN'">车站管理</el-menu-item>
-    <el-menu-item index="/route" v-if="user.userType === 'ADMIN'">路线管理</el-menu-item>
-    <el-menu-item index="/train" v-if="user.userType === 'ADMIN'">车次管理</el-menu-item>
+    <el-menu-item index="/station" v-if="user.userType === '管理员'">车站管理</el-menu-item>
+    <el-menu-item index="/route" v-if="user.userType === '管理员'">路线管理</el-menu-item>
+    <el-menu-item index="/train" v-if="user.userType === '管理员'">车次管理</el-menu-item>
 <!--For test use-->
     <!--    <el-menu-item index="/station">车站管理</el-menu-item>-->
     <!--    <el-menu-item index="/route">路线管理</el-menu-item>-->
