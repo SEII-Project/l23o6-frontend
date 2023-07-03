@@ -36,14 +36,13 @@ const handleOrder = () => {
 <template>
   <div>
     <el-row>
-      <el-col :span="3" class="el-text">{{ name }}</el-col>
-      <el-col :span="3" class="el-text">{{ name }}</el-col>
+      <el-col :span="2" class="el-text">{{ name }}</el-col>
       <el-col :span="2" class="el-text">{{ calDuration(departure_time ?? -1, arrival_time ?? -1) }}</el-col>
       <el-col :span="3" class="el-text">{{ stations.idToName[start_station_id ?? -1] }}</el-col>
       <el-col :span="3" class="el-text">{{ stations.idToName[end_station_id ?? -1] }}</el-col>
       <el-col :span="3" class="el-text">{{ parseDate(departure_time) }}</el-col>
       <el-col :span="3" class="el-text">{{ parseDate(arrival_time) }}</el-col>
-      <el-col :span="2" class="el-text" v-for="ticket in ticket_info" :label="ticket.type">{{ ticket.count }}</el-col>
+      <el-col :span="1" class="el-text" v-for="ticket in ticket_info" :label="ticket.type">{{ ticket.count }}</el-col>
       <el-col :span="2" class="el-text">
         <div style="display: flex; justify-content: flex-end; margin-top: 3vh;">
           <el-button @click="drawer = true">
