@@ -218,21 +218,23 @@ onMounted(() => {
       <br />
 
       <div style="display: flex; justify-content: center">
-        <el-collapse style="width: 80vh; display: flex;flex-direction: column; border: 3px solid #AAAAAA">
-          <el-collapse-item v-for="train in trainsFiltered.data" :title="train.name">
-            <div style="margin-bottom: 5%">
-              <el-button @click="change = true; toChange = train;">
-                更改
-              </el-button>
-              <el-button type="danger" @click="delTrain(train.id)">
-                删除
-              </el-button>
-            </div>
-            <div>
-              <TrainManageDetail v-bind="{ ...train, date: new Date(train.date) }" />
-            </div>
-          </el-collapse-item>
-        </el-collapse>
+        <el-card shadow="hover" style="border: 3px solid #AAAAAA">
+          <el-collapse style="width: 80vh; display: flex;flex-direction: column">
+            <el-collapse-item v-for="train in trainsFiltered.data" :title="train.name">
+              <div style="margin-bottom: 5%">
+                <el-button type="primary" @click="change = true; toChange = train;">
+                  更改
+                </el-button>
+                <el-button type="danger" @click="delTrain(train.id)">
+                  删除
+                </el-button>
+              </div>
+              <div>
+                <TrainManageDetail v-bind="{ ...train, date: new Date(train.date) }" />
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+        </el-card>
       </div>
     </el-main>
   </el-container>

@@ -58,6 +58,14 @@ const submitOrderForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
 
   formEl.validate((valid) => {
+    let ticket;
+    let price;
+    for(ticket in props.ticket_info) {
+      if(ticket.type == orderForm.seat_type) {
+        price = ticket.price;
+      }
+    }
+
     if (!valid) return
     console.log('submit!')
     const r = request({
@@ -73,7 +81,8 @@ const submitOrderForm = (formEl: FormInstance | undefined) => {
         },
         start_station_id: props.start_station_id,
         end_station_id: props.end_station_id,
-        seat_type: orderForm.seat_type
+        seat_type: orderForm.seat_type,
+        price: price
       }
     })
 
