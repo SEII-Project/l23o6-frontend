@@ -187,10 +187,11 @@ onMounted(() => {
       <br />
 
       <div style="display: flex; justify-content: center">
-        <el-collapse style="width: 80vh; display: flex;flex-direction: column; border: 3px solid #AAAAAA">
+        <el-card shadow="hover" style="border: 3px solid #AAAAAA">
+        <el-collapse style="width: 80vh; display: flex;flex-direction: column">
           <el-collapse-item v-for="route in routesFiltered.data" :title="route.name">
             <div style="margin-bottom: 5%">
-              <el-button @click="change = true; toChange = route;">
+              <el-button type="primary" @click="change = true; toChange = route;">
                 更改
               </el-button>
               <el-button type="danger" @click="delRoute(route.id)">
@@ -214,7 +215,7 @@ onMounted(() => {
                 <el-col :span="11" style="display: flex; justify-content: left; align-items: center;">
                   <el-text style="text-align: center" tag="b" type="primary" size="large">
                     {{ route.station_ids?.length > 0 ? stations.idToName[route.station_ids?.[route.station_ids?.length -
-                      1]] : '' }}
+                  1]] : '' }}
                   </el-text>
                 </el-col>
               </el-row>
@@ -231,6 +232,7 @@ onMounted(() => {
           </el-collapse-item>
 
         </el-collapse>
+        </el-card>
       </div>
 
     </el-main>
