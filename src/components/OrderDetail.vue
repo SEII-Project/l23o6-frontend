@@ -149,7 +149,7 @@ getOrderDetail()
   <div style="display: flex; flex-direction: column">
 
     <div style="margin-bottom: 2vh;">
-      <el-button style="float:right" @click="getOrderDetail">
+      <el-button type="primary" style="float:right" @click="getOrderDetail">
         刷新
       </el-button>
     </div>

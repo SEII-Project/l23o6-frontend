@@ -58,7 +58,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card v-for="order in orders.data " style="margin-bottom: 1vh" shadow="hover">
+  <el-card v-for="order in orders.data " style="margin-bottom: 1px; width: 600px;" shadow="hover">
     <div style="display: flex; flex-direction: column">
 
       <div style="display: flex; justify-content: space-between;">
