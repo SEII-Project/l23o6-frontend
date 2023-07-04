@@ -8,6 +8,7 @@
       <MenuComponent pageIndex="/login" />
     </el-header>
     <el-main style="margin-top: 10vh">
+      <Icon/>
       <el-row justify="center" style="display: flex; align-content: center; height: 80vh">
         <el-col :span="12" style="display: flex; align-items: center">
           <el-card class="login-card" shadow="hover" header="账号密码登录" style="border: 3px solid #AAAAAA">

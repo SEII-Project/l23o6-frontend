@@ -61,6 +61,12 @@ const submit = () => {
       <div style="display: flex; justify-content: center; margin-bottom: 5vh">
         <el-card shadow="hover" style="width: 84%;  border: 3px solid #AAAAAA">
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
+          <el-row>
+            <el-text style="font-weight: bold">车次类型：</el-text>
+            <el-text>类型1</el-text><el-checkbox/>
+            <el-text>类型2</el-text><el-checkbox/>
+            <el-text>类型3</el-text><el-checkbox/>
+          </el-row>
         </el-card>
       </div>
       <el-empty v-if="empty" description=" " />
