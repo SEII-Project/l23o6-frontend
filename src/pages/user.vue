@@ -50,7 +50,7 @@ const menuSelect = (key) => {
           </el-card>
         </div>
         <div style="display: flex; justify-content: center" v-else>
-          <el-card shadow="hover" style="width: 600px; border: 3px solid #AAAAAA">
+          <el-card shadow="hover" style="width: 650px; border: 3px solid #AAAAAA">
             <el-text size="large" type="primary" style="display: flex;justify-content: center">
               <h1>订单</h1>
             </el-text>
