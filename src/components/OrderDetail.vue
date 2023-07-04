@@ -33,6 +33,10 @@ let train = reactive<{ data: { name?: string } }>({
   data: {}
 });
 
+const jumpToPayment = (payUrl: String) => {
+  window.open(payUrl, '_blank')
+}
+
 const getOrderDetail = () => {
   if(props.id != null) {
     request({
@@ -90,6 +94,7 @@ const pay = (id: number, payMethod: String) => {
       message: h('success', { style: 'color: teal' }, res.data.msg),
     })
     getOrderDetail()
+    jumpToPayment(res.data.data)
     console.log(res)
   }).catch((error) => {
     if (error.response?.data.code == 100003) {
