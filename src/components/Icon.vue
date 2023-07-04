@@ -7,26 +7,24 @@ export default {
   data(){
     return{
       darkMode:storageLocal.getItem("mode"),
-      lightIconUrl:"public/icon_light.png",
-      darkIconUrl:"public/icon_dark.png"
     }
   },
   methods: {
+    async changeIcon() {
+      if(this.darkMode === "dark") this.darkMode = "light";
+      else this.darkMode = "dark";
+      storageLocal.setItem("mode", this.darkMode);
+    },
     getMode(){
       return this.darkMode;
     },
-
-    changeIcon() {
-      if(this.getMode() === "light") {
-        this.lightImgIndex = (this.lightImgIndex + 1) % this.lightImgNum;
-        this.lightImgUrl = '/background_light/' + this.lightImgIndex + '.jpg';
-      }
-      else {
-        this.darkImgIndex = (this.darkImgIndex + 1) % this.darkImgNum;
-        this.darkImgUrl = '/background_dark/' + this.darkImgIndex + '.jpg';
-      }
-    }
   },
+  created () {
+    window.addEventListener('changeMode', this.changeIcon);
+  },
+  beforeUnmount() {
+    window.removeEventListener('changeMode', this.changeIcon);
+  }
 
 }
 </script>
