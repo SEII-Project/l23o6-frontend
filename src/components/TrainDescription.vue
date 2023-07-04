@@ -33,7 +33,7 @@ const handleOrder = () => {
 
 <template>
   <div style="display: flex; justify-content: center">
-  <el-card shadow="hover" style="width: 65%; border: 3px solid #AAAAAA; border-bottom: 2px">
+  <el-card shadow="hover" style="width: 40%; border: 3px solid #AAAAAA; border-bottom: 2px">
     <el-descriptions :column="4" border>
       <el-descriptions-item :span="2" width="25%" align="center">
         <template #label>

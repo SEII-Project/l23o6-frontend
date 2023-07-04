@@ -43,7 +43,7 @@ onMounted(() => {
 <template>
   <el-form :model="form" label-width="120px" :inline="inline">
     <el-form-item label="出发站">
-      <el-select v-model="form.start_station_id" filterable>
+      <el-select v-model="form.start_station_id">
         <el-option v-for="item in stations.rawData" :key="item.id" :label="item.name" :value="item.id" />
       </el-select>
     </el-form-item>

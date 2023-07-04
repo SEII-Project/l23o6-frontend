@@ -63,6 +63,7 @@ const submit = () => {
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
         </el-card>
       </div>
+      <el-empty v-if="empty" description=" " />
       <train-description v-for="train in trains.res" v-bind="train" />
     </el-main>
   </el-container>

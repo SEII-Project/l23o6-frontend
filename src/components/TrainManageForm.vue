@@ -37,6 +37,82 @@ let route = reactive({
 })
 let routes = ref([] as RouteInfo[])
 
+let index = 0;
+let dep_range_min = new Date(0, 0, 0)
+let dep_range_max = new Date(0, 0, 0)
+let arr_range_min = new Date(9999, 12, 30)
+let arr_range_max = new Date(9999, 12, 30)
+let previous = new Date(0, 0, 0)
+let after = new Date(9999, 12, 30)
+
+
+const setTarget = (num: Number) => {
+  if(index != num) console.log("index from " + index + " to " + num);
+  index = num;
+  getRange();
+}
+const getRange = () => {
+  let i;
+  previous = train.date ? new Date(train.date) : new Date(0, 0, 0)
+  after = new Date(9999, 12, 30)
+  for (i = 0; i < route.station_ids.length; i++) {
+    if (i < index) {
+      if (train.arrival_times && train.arrival_times[i]) {
+        let arrival_time = new Date(train.arrival_times[i]);
+        previous = previous.getTime() > arrival_time.getTime() ? previous : arrival_time;
+      }
+      if (train.departure_times && train.departure_times[i]) {
+        let departure_time = new Date(train.departure_times[i]);
+        previous = previous.getTime() > departure_time.getTime() ? previous : departure_time;
+      }
+    } else if (i > index) {
+      if (train.arrival_times && train.arrival_times[i]) {
+        let arrival_time = new Date(train.arrival_times[i]);
+        after = after.getTime() < arrival_time.getTime() ? after : arrival_time;
+      }
+      if (train.departure_times && train.departure_times[i]) {
+        let departure_time = new Date(train.departure_times[i]);
+        after = after.getTime() < departure_time.getTime() ? after : departure_time;
+      }
+    }
+  }
+  if(index != 0 && train.arrival_times && train.arrival_times[index]) dep_range_min = new Date(train.arrival_times[index]);
+  else dep_range_min = previous;
+  dep_range_max = after;
+  if(index != route.station_ids.length - 1 && train.departure_times && train.departure_times[index]) arr_range_max = new Date(train.departure_times[index]);
+  else arr_range_max = after;
+  arr_range_min = previous;
+}
+
+const check = () => {
+  let i;
+  for(i = 1; i < route.station_ids.length; ++i) {
+    let empty = new Date(0, 0, 0);
+    let dep = train.departure_times && train.departure_times[i] ? new Date(train.departure_times[i]) : empty;
+    let arr = train.arrival_times && train.arrival_times[i] ? new Date(train.arrival_times[i]) : empty;
+    let pre_dep = train.arrival_times && train.arrival_times[i - 1] ? new Date(train.departure_times[i - 1]) : empty;
+    console.log(dep.getTime() + " " + arr.getTime() + " " + pre_dep.getTime())
+    if((dep.getTime() < arr.getTime() && dep.getTime() != empty.getTime()) || (arr.getTime() < pre_dep.getTime() && arr.getTime() != empty.getTime())) {
+      ElNotification( {
+        message: '请检查各个站点的到点/开点是否有序！',
+        type: 'error'
+      })
+      return false;
+    }
+  }
+  return true;
+}
+
+const disabledDateOnDep = (time: Date) => {
+  getRange();
+  return time.getTime() + 86400000 <= dep_range_min.getTime() || time.getTime() > dep_range_max.getTime();
+}
+
+const disabledDateOnArr = (time: Date) => {
+  getRange();
+  return time.getTime() + 86400000 <= arr_range_min.getTime() || time.getTime() > arr_range_max.getTime();
+}
+
 const getRoutes = () => {
   request({
     url: `/admin/route`,
@@ -153,23 +229,24 @@ getRoute()
           </el-icon>
           <strong style="margin-left: 5%; margin-right: 5%">
             {{ index + 1 }}
+            {{setTarget(index)}}
           </strong>
           <div style="width: 80%">
             {{ stations.idToName[station] }}
           </div>
 
-          <el-date-picker style="width: 50%; margin-right: 1%" :disabled="index === 0"
+          <el-date-picker style="width: 50%; margin-right: 1%" :disabled="index === 0" @focus="setTarget(index)"
             @change="() => { if (index === route.station_ids.length - 1) { train.departure_times[index] = train.arrival_times[index] } }"
-            v-model="train.arrival_times[index]" type="datetime" placeholder="到点" format="YY/MM/DD HH:mm" />
+            v-model="train.arrival_times[index]" type="datetime" placeholder="到点" format="YY/MM/DD HH:mm" :disabled-date="disabledDateOnArr" />
 
-          <el-date-picker style="width: 50%" :disabled="index === route.station_ids.length - 1"
+          <el-date-picker style="width: 50%" :disabled="index === route.station_ids.length - 1" @focus="setTarget(index)"
             @change="() => { if (index === 0) { train.arrival_times[0] = train.departure_times[0] } }"
-            v-model="train.departure_times[index]" type="datetime" placeholder="开点" format="YY/MM/DD HH:mm" />
+            v-model="train.departure_times[index]" type="datetime" placeholder="开点" format="YY/MM/DD HH:mm" :disabled-date="disabledDateOnDep" />
         </div>
       </el-card>
     </div>
 
-    <el-button @click="$emit('formSubmitted', train)" style="margin-top: 2vh" type="primary">
+    <el-button @click="() => { if (check()) {$emit('formSubmitted', train) } }" style="margin-top: 2vh" type="primary">
       确认
     </el-button>
 
