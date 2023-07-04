@@ -93,7 +93,7 @@ export default {
 </script>
 
 <template>
-  <Hitokoto></Hitokoto>
+<!--  <Hitokoto></Hitokoto>-->
   <div v-if="getMode() === 'light'">
     <div class="background_light" :style="{width: fullWidth+'px', height:fullHeight+'px'}">
      <div class="img_box" :style="{width: fullWidth+'px', backgroundImage: 'url(' + this.lightImgUrl + ')'}"></div>
