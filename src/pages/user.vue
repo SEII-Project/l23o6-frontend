@@ -50,13 +50,15 @@ const menuSelect = (key) => {
             <UserInfoComponent style="width: 35vh; margin: 0 auto" />
           </el-card>
         </div>
-        <div class="card" style="display: flex; justify-content: center" v-else>
-          <el-card shadow="hover" style="margin-top: 40vh;width: 650px; border: 3px solid #AAAAAA">
-            <el-text size="large" type="primary" style="display: flex;justify-content: center">
-              <h1>订单</h1>
-            </el-text>
-            <UserOrders />
-          </el-card>
+        <div style="margin-top: 50vh; display: flex; justify-content: center; height: 80vh" v-else>
+          <el-scrollbar style="height: 80%; ">
+            <el-card shadow="hover" style="width: 650px; border: 3px solid #AAAAAA">
+              <el-text size="large" type="primary" style="display: flex;justify-content: center">
+                <h1>订单</h1>
+              </el-text>
+              <UserOrders />
+           </el-card>
+          </el-scrollbar>
         </div>
       </el-main>
     </el-container>
@@ -64,8 +66,5 @@ const menuSelect = (key) => {
 </template>
 
 <style scoped>
-.card{
-  height: 100vh;
-  overflow-y: auto;
-}
+
 </style>
