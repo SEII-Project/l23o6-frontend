@@ -166,20 +166,22 @@ watch(stations, () => {
       <br />
       <br />
 
-      <div style="display: flex; justify-content: center">
-        <el-card shadow="hover" style="border: 3px solid #AAAAAA">
-          <el-collapse style="width: 80vh; display: flex;flex-direction: column">
-            <el-collapse-item v-for="station in stationsFiltered.data" :title="station.name">
-              <el-button type="primary" @click="rename = true; toRenameId = station.id">
-                更改
-              </el-button>
-              <el-button type="danger" @click="delStation(station.id)">
-                删除
-              </el-button>
-            </el-collapse-item>
+      <div style="display: flex; justify-content: center; height: 50vh">
+        <el-scrollbar height="100%">
+          <el-card shadow="hover" style="border: 3px solid #AAAAAA">
+            <el-collapse style="width: 80vh; display: flex;flex-direction: column">
+              <el-collapse-item v-for="station in stationsFiltered.data" :title="station.name">
+                <el-button type="primary" @click="rename = true; toRenameId = station.id">
+                  更改
+                </el-button>
+                <el-button type="danger" @click="delStation(station.id)">
+                  删除
+                </el-button>
+              </el-collapse-item>
 
-          </el-collapse>
-        </el-card>
+            </el-collapse>
+          </el-card>
+        </el-scrollbar>
 
       </div>
     </el-main>

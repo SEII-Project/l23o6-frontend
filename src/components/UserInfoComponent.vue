@@ -18,7 +18,8 @@ let form = reactive({
   type: '',
   idn: '',
   phone: '',
-  credits: ''
+  credits: '',
+  discount: '',
 });
 
 const setForm = async () => {
@@ -28,6 +29,7 @@ const setForm = async () => {
   form.idn = user.idn;
   form.phone = user.phone;
   form.credits = user.credits;
+  form.discount = user.discount;
 }
 
 watch(user, () => {
@@ -135,6 +137,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
       </el-form-item>
       <el-form-item label="积分" prop="credits">
         <el-input v-model="form.credits" style="width: 25vh" :disabled="true" />
+      </el-form-item>
+      <el-form-item label="折扣" prop="discount">
+        <el-input v-model="form.discount" style="width: 25vh" :disabled="true" />
       </el-form-item>
     </el-form>
   </div>
