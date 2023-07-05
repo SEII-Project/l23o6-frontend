@@ -138,9 +138,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
       <el-form-item label="积分" prop="credits">
         <el-input v-model="form.credits" style="width: 25vh" :disabled="true" />
       </el-form-item>
-      <el-form-item label="折扣" prop="discount">
-        <el-input v-model="form.discount" style="width: 25vh" :disabled="true" />
-      </el-form-item>
+<!--      <el-form-item label="折扣" prop="discount">-->
+<!--        <el-input v-model="form.discount" style="width: 25vh" :disabled="true" />-->
+<!--      </el-form-item>-->
     </el-form>
   </div>
 </template>
