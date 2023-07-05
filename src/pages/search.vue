@@ -91,8 +91,8 @@ const submit = () => {
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <TopMenuComponent pageIndex="/search" />
-      <SecondMenuComponent pageIndex="/search" />
+      <MenuComponentTop pageIndex="/search" />
+      <MenuComponentSecond pageIndex="/search" />
     </el-header>
     <el-main v-loading="loading" style="height: 90vh;margin-top: 12vh">
 

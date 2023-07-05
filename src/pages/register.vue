@@ -6,8 +6,8 @@
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <TopMenuComponent pageIndex="/register" />
-      <SecondMenuComponent pageIndex="/register" />
+      <MenuComponentTop pageIndex="/register" />
+      <MenuComponentSecond pageIndex="/register" />
     </el-header>
     <el-main style="margin-top: 10vh">
       <el-row style="display: flex; justify-content: center; align-content: center; height: 80vh">

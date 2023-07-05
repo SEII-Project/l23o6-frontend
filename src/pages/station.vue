@@ -129,8 +129,8 @@ watch(stations, () => {
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <TopMenuComponent pageIndex="/station" />
-      <SecondMenuComponent pageIndex="/station" />
+      <MenuComponentTop pageIndex="/station" />
+      <MenuComponentSecond pageIndex="/station" />
     </el-header>
     <el-main style="margin-top:12vh">
       <div style="display: flex; justify-content: center">

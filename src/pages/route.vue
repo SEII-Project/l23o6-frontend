@@ -152,8 +152,8 @@ onMounted(() => {
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <TopMenuComponent pageIndex="/route" />
-      <SecondMenuComponent pageIndex="/route" />
+      <MenuComponentTop pageIndex="/route" />
+      <MenuComponentSecond pageIndex="/route" />
     </el-header>
     <el-main style="margin-top: 12vh">
       <div style="display: flex; justify-content: center">

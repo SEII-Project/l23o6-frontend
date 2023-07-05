@@ -235,6 +235,9 @@ getRoute()
             {{ stations.idToName[station] }}
           </div>
 
+          <el-select v-model="train.extra_infos[index]" style="width: 50%; margin-right: 1%;">
+            <el-option v-for="type in ['预计正点', '预计晚点']" :key="type" :label="type" :value="type" />
+          </el-select>
           <el-date-picker style="width: 50%; margin-right: 1%" :disabled="index === 0" @focus="setTarget(index)"
             @change="() => { if (index === route.station_ids.length - 1) { train.departure_times[index] = train.arrival_times[index] } }"
             v-model="train.arrival_times[index]" type="datetime" placeholder="到点" format="YY/MM/DD HH:mm" :disabled-date="disabledDateOnArr" />
