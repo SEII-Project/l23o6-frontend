@@ -187,7 +187,8 @@ onMounted(() => {
       <br />
       <br />
 
-      <div style="display: flex; justify-content: center">
+      <div style="display: flex; justify-content: center;height: 50vh">
+        <el-scrollbar height="100%">
         <el-card shadow="hover" style="border: 3px solid #AAAAAA">
         <el-collapse style="width: 80vh; display: flex;flex-direction: column">
           <el-collapse-item v-for="route in routesFiltered.data" :title="route.name">
@@ -234,6 +235,7 @@ onMounted(() => {
 
         </el-collapse>
         </el-card>
+        </el-scrollbar>
       </div>
 
     </el-main>
