@@ -22,7 +22,7 @@ const menuSelect = (key) => {
       <TopMenuComponent pageIndex="/user" />
       <SecondMenuComponent pageIndex="/user" />
     </el-header>
-    <el-container style="display: flex; align-items: center; height: 85vh">
+    <el-container style="display: flex; align-items: center; height: 60vh">
       <el-aside width=auto>
         <el-card shadow="hover" style="border: 3px solid #AAAAAA; border-left: 0">
           <el-menu default-active="1" class="el-menu-vertical-demo"
@@ -50,8 +50,8 @@ const menuSelect = (key) => {
             <UserInfoComponent style="width: 35vh; margin: 0 auto" />
           </el-card>
         </div>
-        <div style="display: flex; justify-content: center" v-else>
-          <el-card shadow="hover" style="margin-top: 600px;width: 650px; border: 3px solid #AAAAAA">
+        <div class="card" style="display: flex; justify-content: center" v-else>
+          <el-card shadow="hover" style="margin-top: 40vh;width: 650px; border: 3px solid #AAAAAA">
             <el-text size="large" type="primary" style="display: flex;justify-content: center">
               <h1>订单</h1>
             </el-text>
@@ -60,8 +60,12 @@ const menuSelect = (key) => {
         </div>
       </el-main>
     </el-container>
-
   </el-container>
 </template>
 
-<style scoped></style>
+<style scoped>
+.card{
+  height: 100vh;
+  overflow-y: auto;
+}
+</style>
