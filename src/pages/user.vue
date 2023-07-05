@@ -19,7 +19,8 @@ const menuSelect = (key) => {
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <MenuComponent pageIndex="/user" />
+      <TopMenuComponent pageIndex="/user" />
+      <SecondMenuComponent pageIndex="/user" />
     </el-header>
     <el-container style="display: flex; align-items: center; height: 85vh">
       <el-aside width=auto>

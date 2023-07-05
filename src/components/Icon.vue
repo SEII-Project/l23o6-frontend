@@ -31,10 +31,10 @@ export default {
 
 <template>
   <div v-if="getMode() === 'light'">
-    <img src="public/icon_light.png">
+    <img src="icon_dark.png">
   </div>
   <div v-else>
-    <img src="public/icon_dark.png">
+    <img src="icon_light.png">
   </div>
 </template>
 

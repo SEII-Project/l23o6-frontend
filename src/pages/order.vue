@@ -10,9 +10,10 @@ const route = useRoute()
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <MenuComponent pageIndex="/order" />
+      <TopMenuComponent pageIndex="/order" />
+      <SecondMenuComponent pageIndex="/order" />
     </el-header>
-    <el-main style="margin-top: 10vh">
+    <el-main style="margin-top: 15vh">
       <div style="display: flex; justify-content: center">
         <el-card shadow="hover" style="width: 100vh; height: auto; border: 3px solid #AAAAAA">
           <div>

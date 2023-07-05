@@ -6,10 +6,10 @@
   <el-container>
     <Background></Background>
     <el-header style="position: fixed; width: 100%; z-index: 999">
-      <MenuComponent pageIndex="/register" />
+      <TopMenuComponent pageIndex="/register" />
+      <SecondMenuComponent pageIndex="/register" />
     </el-header>
     <el-main style="margin-top: 10vh">
-      <Icon/>
       <el-row style="display: flex; justify-content: center; align-content: center; height: 80vh">
         <el-col :span="24" style="display: flex; justify-content: center; align-content: center">
           <el-card shadow="hover" header="注册" style="border: 3px solid #AAAAAA">
