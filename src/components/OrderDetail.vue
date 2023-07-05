@@ -34,7 +34,7 @@ let train = reactive<{ data: { name?: string } }>({
 });
 
 const jumpToPayment = (payUrl: String) => {
-  window.open(payUrl, '_blank')
+  window.location.href = payUrl;
 }
 
 const getOrderDetail = () => {
