@@ -42,7 +42,7 @@ const menuSelect = (key) => {
       </el-aside>
       <el-main>
         <div style="display: flex; justify-content: center" v-if="index == 1">
-          <el-card shadow="hover" style="border: 3px solid #AAAAAA">
+          <el-card shadow="hover" style="margin-top: 40vh; border: 3px solid #AAAAAA">
             <el-text size="large" type="primary" style="display: flex;justify-content: center">
               <h1>个人信息</h1>
             </el-text>
