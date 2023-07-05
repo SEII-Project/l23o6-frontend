@@ -84,7 +84,7 @@ const pay = (id: number, payMethod: String) => {
     url: `/order/${id}`,
     method: 'PATCH',
     data: {
-      status: '已支付',
+      status: '等待支付',
       payment_type: payMethod
     }
   }).then((res) => {
