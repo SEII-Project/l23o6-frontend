@@ -10,7 +10,8 @@ export const useUserStore = defineStore('user', {
             idn: '',
             phone: '',
             userType: '',
-            credits:''
+            credits: '',
+            discount: ''
         }
     },
     getters: {
@@ -31,6 +32,7 @@ export const useUserStore = defineStore('user', {
                 this.phone = res.data.data.phone;
                 this.userType = res.data.data.user_type;
                 this.credits = res.data.data.credits;
+                this.discount = res.data.data.discount;
             }).catch((err) => {
                 console.log(err)
             })

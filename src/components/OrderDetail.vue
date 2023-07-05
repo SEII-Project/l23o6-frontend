@@ -26,6 +26,8 @@ let orderDetail = reactive<{ data: OrderDetailData }>({
     end_station_id: 0,
     departure_time: '',
     arrival_time: '',
+    price: 0,
+    discount: 0
   },
 })
 
@@ -84,15 +86,15 @@ const pay = (id: number, payMethod: String) => {
     url: `/order/${id}`,
     method: 'PATCH',
     data: {
-      status: '已支付',
+      status: '等待支付',
       payment_type: payMethod
     }
   }).then((res) => {
-    ElNotification({
-      offset: 70,
-      title: '支付成功',
-      message: h('success', { style: 'color: teal' }, res.data.msg),
-    })
+    // ElNotification({
+    //   offset: 70,
+    //   title: '支付成功',
+    //   message: h('success', { style: 'color: teal' }, res.data.msg),
+    // })
     getOrderDetail()
     jumpToPayment(res.data.data)
     console.log(res)
@@ -174,6 +176,25 @@ getOrderDetail()
         </el-text>
         <el-text size="large" tag="b" v-if="orderDetail.data">
           {{ parseDate(orderDetail.data.created_at) }}
+        </el-text>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <el-text size="large" tag="b" type="primary">
+          价格:&nbsp;&nbsp;
+        </el-text>
+        <el-text size="large" tag="b" v-if="orderDetail.data">
+          {{ orderDetail.data.price }}
+        </el-text>
+      </div>
+      <div>
+        <el-text size="large" tag="b" type="primary">
+          折扣:&nbsp;&nbsp;
+        </el-text>
+        <el-text size="large" tag="b" v-if="orderDetail.data">
+          {{ orderDetail.data.discount }}
         </el-text>
       </div>
     </div>
