@@ -9,6 +9,7 @@ const route = useRoute();
 const search = useSearchStore();
 
 let trains = reactive({
+  data: [],
   res: []
 })
 let loading = ref(false)
@@ -19,6 +20,41 @@ onMounted(() => {
     submit()
   }
 })
+
+let tick1 = false;
+let tick2 = false;
+
+const updateTrains = () => {
+  if(tick1 ^ tick2) {
+    if(tick1) {
+      let i;
+      let cnt = 0;
+      trains.res = [];
+      for(i = 0; i < trains.data.length; ++i) {
+        if(trains.data[i].train_type == 'HIGH_SPEED') trains.res[cnt++] = trains.data[i];
+      }
+    }
+    else {
+      let i;
+      let cnt = 0;
+      trains.res = [];
+      for(i = 0; i < trains.data.length; ++i) {
+        if(trains.data[i].train_type == 'NORMAL_SPEED') trains.res[cnt++] = trains.data[i];
+      }
+    }
+  }
+  else trains.res = trains.data;
+}
+
+const Tick1 = () => {
+  tick1 = !tick1;
+  updateTrains();
+}
+
+const Tick2 = () => {
+  tick2 = !tick2;
+  updateTrains();
+}
 
 const submit = () => {
   loading.value = true
@@ -33,7 +69,8 @@ const submit = () => {
   })
 
   r.then((res) => {
-    trains.res = res.data.data
+    trains.data = res.data.data
+    updateTrains()
     console.log("submit")
     empty.value = trains.res.length === 0;
   }).catch((error) => {
@@ -63,16 +100,14 @@ const submit = () => {
         <el-card shadow="hover" style="width: 84%;  border: 3px solid #AAAAAA">
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
           <el-row style="justify-content: center">
-            <el-text style="font-weight: bold; font-size: large">车次类型：</el-text>
-            <el-text style="font-size: large">高铁&ensp;</el-text>
-            <el-checkbox style="zoom: 150%" />
-            <el-text style="font-size: large">普通列车&ensp;</el-text>
-            <el-checkbox style="zoom: 150%" />
+            <el-text style="font-size: large">车次类型：</el-text>
+            <el-checkbox style="zoom: 150%" @change="Tick1" label="高铁" />
+            <el-checkbox style="zoom: 150%" @change="Tick2" label="普通列车"/>
           </el-row>
         </el-card>
       </div>
-      <el-empty v-if="empty" description=" " />
-      <train-description v-for="train in trains.res" v-bind="train" />
+      <el-empty v-if="empty" description=" "/>
+      <train-description v-for="train in trains.res"  v-bind="train" />
     </el-main>
   </el-container>
 </template>
