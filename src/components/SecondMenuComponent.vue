@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import {toggleDark} from '~/composables';
 import { useUserStore } from "~/stores/user";
 import { request } from "~/utils/request";
 import { AxiosError, AxiosResponse } from "axios";
@@ -38,11 +37,6 @@ const logout = () => {
       message: h('error', { style: 'color: teal' }, error.response?.data.msg),
     })
   });
-}
-
-async function change() {
-  await toggleDark();
-  window.dispatchEvent(new Event('changeMode'));
 }
 
 </script>

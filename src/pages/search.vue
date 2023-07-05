@@ -101,8 +101,8 @@ const submit = () => {
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
           <el-row style="justify-content: center">
             <el-text style="font-size: large">车次类型：</el-text>
-            <el-checkbox style="zoom: 150%" @change="Tick1" label="高铁" />
-            <el-checkbox style="zoom: 150%" @change="Tick2" label="普通列车"/>
+            <el-checkbox style="zoom: 130%" @change="Tick1" label="高铁" />
+            <el-checkbox style="zoom: 130%" @change="Tick2" label="普通列车"/>
           </el-row>
         </el-card>
       </div>
