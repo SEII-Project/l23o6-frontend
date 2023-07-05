@@ -34,7 +34,8 @@ let train = reactive<{ data: { name?: string } }>({
 });
 
 const jumpToPayment = (payUrl: String) => {
-  window.location.href = payUrl;
+  window.open(payUrl, '_blank');
+  // window.location.href = payUrl;
 }
 
 const getOrderDetail = () => {
@@ -84,15 +85,15 @@ const pay = (id: number, payMethod: String) => {
     url: `/order/${id}`,
     method: 'PATCH',
     data: {
-      status: '已支付',
+      status: '等待支付',
       payment_type: payMethod
     }
   }).then((res) => {
-    ElNotification({
-      offset: 70,
-      title: '支付成功',
-      message: h('success', { style: 'color: teal' }, res.data.msg),
-    })
+    // ElNotification({
+    //   offset: 70,
+    //   title: '支付成功',
+    //   message: h('success', { style: 'color: teal' }, res.data.msg),
+    // })
     getOrderDetail()
     jumpToPayment(res.data.data)
     console.log(res)
@@ -236,16 +237,16 @@ getOrderDetail()
         </el-button>
       </div>
     </div>
-    <div v-else-if="orderDetail.data && orderDetail.data.status === '已支付'" style="margin-top: 2vh">
+<!--    <div v-else-if="orderDetail.data && orderDetail.data.status === '已支付'" style="margin-top: 2vh">-->
 <!--For test use-->
-      <!--    <div style="margin-top: 2vh">-->
+<!--          <div style="margin-top: 2vh">-->
 <!--      -->
-      <div style="float:right;">
-        <el-button type="danger" @click="cancel(id ?? -1)">
-          取消订单
-        </el-button>
-      </div>
-    </div>
+<!--      <div style="float:right;">-->
+<!--        <el-button type="danger" @click="cancel(id ?? -1)">-->
+<!--          取消订单-->
+<!--        </el-button>-->
+<!--      </div>-->
+<!--    </div>-->
 
   </div>
 </template>

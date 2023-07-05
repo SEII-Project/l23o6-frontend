@@ -47,7 +47,6 @@ let after = new Date(9999, 12, 30)
 
 
 const setTarget = (num: Number) => {
-  if(index != num) console.log("index from " + index + " to " + num);
   index = num;
   getRange();
 }
