@@ -109,7 +109,6 @@ const submit = () => {
       <div style="display: flex; justify-content: center; height: 50vh">
         <el-scrollbar height="100%">
           <el-card shadow="hover" style="border: 3px solid #AAAAAA; width: 80vh">
-            <el-empty v-if="empty" description=" "/>
             <train-description v-for="train in trains.res"  v-bind="train" />
           </el-card>
         </el-scrollbar>
