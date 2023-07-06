@@ -3,6 +3,7 @@ import { h, onMounted, reactive } from "vue";
 import { useSearchStore } from "~/stores/search";
 import { useStationsStore } from "~/stores/stations";
 import { ElNotification } from "element-plus";
+import {Switch} from "@element-plus/icons-vue";
 
 defineProps({
   inline: Boolean
@@ -17,6 +18,13 @@ const form = reactive({
   end_station_id: search.end_station_id,
   date: search.date
 })
+
+const Swap = () => {
+  let tmp1 = form.start_station_id;
+  let tmp2 = form.end_station_id;
+  form.end_station_id = tmp1;
+  form.start_station_id = tmp2;
+}
 
 const disabledDate = (time: Date) => {
   let now = new Date();
@@ -41,11 +49,18 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-form :model="form" label-width="120px" :inline="inline">
+  <el-form :model="form" :inline="inline" >
     <el-form-item label="出发站">
       <el-select v-model="form.start_station_id">
         <el-option v-for="item in stations.rawData" :key="item.id" :label="item.name" :value="item.id" />
       </el-select>
+    </el-form-item>
+    <el-form-item>
+      <el-button @click="Swap">
+        <el-icon>
+          <Switch />
+        </el-icon>
+      </el-button>
     </el-form-item>
     <el-form-item label="到达站">
       <el-select v-model="form.end_station_id" filterable>

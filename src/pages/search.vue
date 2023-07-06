@@ -97,7 +97,7 @@ const submit = () => {
     <el-main v-loading="loading" style="height: 90vh;margin-top: 12vh">
 
       <div style="display: flex; justify-content: center; margin-bottom: 5vh">
-        <el-card shadow="hover" style="width: 84%;  border: 3px solid #AAAAAA">
+        <el-card shadow="hover" style="border: 3px solid #AAAAAA">
           <SearchTicketForm :inline="true" @formUpdated="submit" style="display: flex; justify-content: center" />
           <el-row style="justify-content: center">
             <el-text style="font-size: large">车次类型：</el-text>
