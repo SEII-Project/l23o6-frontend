@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', {
                 this.phone = res.data.data.phone;
                 this.userType = res.data.data.user_type;
                 this.credits = res.data.data.credits;
-                this.deposit = res.data.data.discount;
+                this.deposit = res.data.data.deposit;
             }).catch((err) => {
                 console.log(err)
             })
