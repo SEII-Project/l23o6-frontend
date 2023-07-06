@@ -96,7 +96,7 @@ const pay = (id: number, payMethod: String) => {
     //   message: h('success', { style: 'color: teal' }, res.data.msg),
     // })
     getOrderDetail()
-    jumpToPayment(res.data.data)
+    if(res.data.data) jumpToPayment(res.data.data)
     console.log(res)
   }).catch((error) => {
     if (error.response?.data.code == 100003) {
