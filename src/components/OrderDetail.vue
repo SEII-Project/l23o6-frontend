@@ -96,7 +96,7 @@ const pay = (id: number, payMethod: String) => {
     //   message: h('success', { style: 'color: teal' }, res.data.msg),
     // })
     getOrderDetail()
-    jumpToPayment(res.data.data)
+    if(res.data.data) jumpToPayment(res.data.data)
     console.log(res)
   }).catch((error) => {
     if (error.response?.data.code == 100003) {
@@ -111,12 +111,12 @@ const pay = (id: number, payMethod: String) => {
   })
 }
 
-const cancel = (id: number) => {
+const cancel = (id: number, status: String) => {
   request({
     url: `/order/${id}`,
     method: 'PATCH',
     data: {
-      status: '已取消'
+      status: status
     }
   }).then((res) => {
     ElNotification({
@@ -252,21 +252,21 @@ getOrderDetail()
         <el-button type="primary" @click="pay(id ?? -1, '支付宝支付')">
           支付宝支付
         </el-button>
-        <el-button type="danger" @click="cancel(id ?? -1)">
+        <el-button type="danger" @click="cancel(id ?? -1, '已取消')">
           取消订单
         </el-button>
       </div>
     </div>
-<!--    <div v-else-if="orderDetail.data && orderDetail.data.status === '已支付'" style="margin-top: 2vh">-->
+    <div v-else-if="orderDetail.data && orderDetail.data.status === '已支付'" style="margin-top: 2vh">
 <!--For test use-->
       <!--    <div style="margin-top: 2vh">-->
 <!--      -->
-<!--      <div style="float:right;">-->
-<!--        <el-button type="danger" @click="cancel(id ?? -1)">-->
-<!--          取消订单-->
-<!--        </el-button>-->
-<!--      </div>-->
-<!--    </div>-->
+      <div style="float:right;">
+        <el-button type="danger" @click="cancel(id ?? -1, '已退款')">
+          退款
+        </el-button>
+      </div>
+    </div>
 
   </div>
 </template>
