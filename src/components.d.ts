@@ -10,6 +10,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Background: typeof import('./components/Background.vue')['default']
+    CarouselBackground: typeof import('./components/CarouselBackground.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -45,6 +46,7 @@ declare module '@vue/runtime-core' {
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
     Hitokoto: typeof import('./components/Hitokoto.vue')['default']
     Icon: typeof import('./components/Icon.vue')['default']
+    IndexBackground: typeof import('./components/IndexBackground.vue')['default']
     LoginForm: typeof import('./components/LoginForm.vue')['default']
     MenuComponent: typeof import('./components/MenuComponent.vue')['default']
     MenuComponentSecond: typeof import('./components/MenuComponentSecond.vue')['default']

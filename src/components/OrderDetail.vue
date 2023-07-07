@@ -102,11 +102,20 @@ const pay = (id: number, payMethod: String) => {
     if (error.response?.data.code == 100003) {
       router.push('/login')
     }
-    ElNotification({
-      offset: 70,
-      title: '支付失败',
-      message: h('error', { style: 'color: teal' }, error.response?.data.msg),
-    })
+    if (error.response?.data.code == 500001) {
+      ElNotification({
+        offset: 70,
+        title: '余额不足',
+        message: h('error', { style: 'color: teal' }, error.response?.data.msg),
+      })
+    }
+    else {
+      ElNotification({
+        offset: 70,
+        title: '支付失败',
+        message: h('error', { style: 'color: teal' }, error.response?.data.msg),
+      })
+    }
     console.log(error)
   })
 }
