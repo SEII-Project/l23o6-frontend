@@ -37,6 +37,7 @@ watch(user, () => {
 })
 
 setForm()
+user.fetch()
 
 const rules = reactive({
   username: [{ required: true, message: '此字段为必填项', trigger: 'change' }, {
