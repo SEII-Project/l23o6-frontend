@@ -67,7 +67,7 @@ onMounted(() => {
         <el-option v-for="item in stations.rawData" :key="item.id" :label="item.name" :value="item.id" />
       </el-select>
     </el-form-item>
-    <el-form-item label="日期">
+    <el-form-item label="日期&emsp;">
       <el-date-picker :clearable="false" v-model="form.date" type="date" placeholder="选择 日期" value-format="YYYY-MM-DD"
         :disabled-date="disabledDate" />
     </el-form-item>

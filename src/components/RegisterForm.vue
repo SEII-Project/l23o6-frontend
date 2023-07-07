@@ -28,6 +28,7 @@ const ruleForm = reactive({
   idn: '',
   phone: '',
   rick: false,
+  user_type: ''
 })
 
 const rules = reactive<FormRules>({
@@ -63,6 +64,7 @@ const rules = reactive<FormRules>({
   phone: [{ required: true, message: '此字段为必填项', trigger: 'change' }, {
     pattern: /^1[3456789]\d{9}$/, message: '手机号码不符合要求', trigger: 'change'
   }],
+  user_type: [{ required: true, message: '此字段为必选项', trigger: 'change'}]
 })
 
 const submitForm = (formEl: FormInstance | undefined) => {
@@ -82,6 +84,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
         type: ruleForm.type,
         idn: ruleForm.idn,
         phone: ruleForm.phone,
+        user_type: ruleForm.user_type
       }
     })
     r.then((response: AxiosResponse<any>) => {
@@ -131,6 +134,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
     </el-form-item>
     <el-form-item label="手机号" prop="phone">
       <el-input v-model="ruleForm.phone" />
+    </el-form-item>
+    <el-form-item label="用户类型" prop="user_type">
+      <el-select v-model="ruleForm.user_type">
+        <el-option v-for="type in ['用户', '管理员']" :key="type" :label="type" :value="type" />
+      </el-select>
     </el-form-item>
     <el-form-item prop="rick">
       <el-checkbox v-model="ruleForm.rick">
